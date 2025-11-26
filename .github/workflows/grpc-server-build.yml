@@ -23,8 +23,8 @@ jobs:
 
       # 3. Build the project (optional — only if you want to validate build)
       - name: Build .NET gRPC Server
-        working-directory: ./GrpcExample/GrpcServer
-        run: dotnet build --configuration Release
+        working-directory: ./GrpcExample
+        run: dotnet build GrpcExample.sln --configuration Release
 
       # 4. Build Docker image
       - name: Build Docker image
