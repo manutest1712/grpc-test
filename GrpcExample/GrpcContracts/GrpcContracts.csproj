@@ -18,6 +18,7 @@
   <ItemGroup>
     <Folder Include="Protos\" />
     <Protobuf Include="Protos\datastream.proto" ProtoRoot="Protos" GrpcServices="Both" />
+    <Protobuf Include="Protos\file.proto" ProtoRoot="Protos" GrpcServices="Both" />
   </ItemGroup>
 
 </Project>

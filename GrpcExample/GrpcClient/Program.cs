@@ -1,5 +1,8 @@
-﻿using Grpc.Net.Client;
+﻿using Grpc.Core;
+using Grpc.Net.Client;
+using TestGrpc.FileService;
 using TestGrpc.proto;
+
 
 // The port number must match the one used by the gRPC server.
 // The default for the gRPC template is usually 5001 (https) or 5000 (http).
@@ -25,3 +28,15 @@ var dataRequest = new DataRequest
 var dataReply = await client.SendDataAsync(dataRequest);
 Console.WriteLine($"Data Sent Status: {dataReply.Status}");
 Console.WriteLine($"Server Acknowledged ID: {dataReply.ReceivedId}");
+
+var fileClient = new FileStreamer.FileStreamerClient(channel);
+
+using var call = fileClient.DownloadFile(new FileRequest { FileName = "11.zip" });
+
+await foreach (var chunk in call.ResponseStream.ReadAllAsync())
+{
+    string output = Path.Combine("C:\\TestData\\Downloads", chunk.FileName);
+
+    using var fs = new FileStream(output, FileMode.Append, FileAccess.Write);
+    fs.Write(chunk.Data.ToByteArray());
+}
