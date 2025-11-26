@@ -56,7 +56,7 @@ jobs:
         run: |
           grpcurl -plaintext localhost:6000 list
           # Example: call a specific method
-          grpcurl -plaintext -d '{"name":"Manu"}' localhost:6000 Greeter/SayHello
+          grpcurl -plaintext -d '{"name":"Manu"}' localhost:6000 greet.Greeter/SayHello
 
       # 9. Stop and remove container
       - name: Clean up Docker container
