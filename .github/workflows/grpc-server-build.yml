@@ -28,10 +28,10 @@ jobs:
 
       # 4. Build Docker image
       - name: Build Docker image
+        working-directory: ./GrpcExample
         run: |
           docker build \
-            -t grpcserver-image:latest \
-            ./GrpcExample/GrpcServer
+            -t grpcserver-image:latest
 
       # 5. List created Docker images
       - name: Show Docker images
