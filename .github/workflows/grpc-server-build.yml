@@ -36,3 +36,28 @@ jobs:
       # 5. List created Docker images
       - name: Show Docker images
         run: docker images
+
+              # 6. Run the Docker container
+      - name: Run gRPC Docker container
+        run: |
+          docker run -d -p 6000:6000 --name grpc-test grpcserver-image:latest
+          sleep 5  # wait a few seconds for the server to start
+
+      # 7. Install grpcurl
+      - name: Install grpcurl
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y grpcurl
+
+      # 8. Test gRPC endpoint
+      - name: Test gRPC endpoint
+        run: |
+          grpcurl -plaintext localhost:6000 list
+          # Example: call a specific method
+          # grpcurl -plaintext -d '{"name":"Manu"}' localhost:6000 YourService.YourMethod
+
+      # 9. Stop and remove container
+      - name: Clean up Docker container
+        run: |
+          docker stop grpc-test
+          docker rm grpc-test
