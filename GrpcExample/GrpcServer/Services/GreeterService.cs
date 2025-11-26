@@ -15,7 +15,7 @@ namespace GrpcServer.Services
         {
             return Task.FromResult(new HelloReply
             {
-                Message = "Hello " + request.Name
+                Message = "Hello I am manu " + request.Name
             });
         }
 
