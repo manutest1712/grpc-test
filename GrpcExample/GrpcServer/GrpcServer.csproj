@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.57.0" />
+    <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.71.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,8 +16,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Protobuf Include="..\ProtoContracts\Protos\*.proto"
-              Link="Protos\%(Filename)%(Extension)"
-              GrpcServices="Server" />
+    <Protobuf Include="..\ProtoContracts\Protos\*.proto" Link="Protos\%(Filename)%(Extension)" GrpcServices="Server" />
   </ItemGroup>
 </Project>
