@@ -47,10 +47,8 @@ jobs:
       - name: Install grpcurl
         run: |
           GRPCURL_VERSION=1.9.3
-          wget https://github.com/fullstorydev/grpcurl/releases/download/v${GRPCURL_VERSION}/grpcurl_${GRPCURL_VERSION}_linux_arm64.tar.gz
-
-          tar -xzf grpcurl_${GRPCURL_VERSION}_linux_arm64.tar.gz
-          sudo mv grpcurl /usr/local/bin/
+          wget https://github.com/fullstorydev/grpcurl/releases/download/v${GRPCURL_VERSION}/grpcurl_${GRPCURL_VERSION}_linux_amd64.deb
+          sudo dpkg -i grpcurl_${GRPCURL_VERSION}_linux_amd64.deb
           grpcurl --version
 
       # 8. Test gRPC endpoint
