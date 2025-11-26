@@ -54,7 +54,7 @@ jobs:
       # 8. Test gRPC endpoint
       - name: Test gRPC endpoint
         run: |
-          # grpcurl -plaintext localhost:6000 list
+          grpcurl -plaintext localhost:6000 list
           # Example: call a specific method
           grpcurl -plaintext -d '{"name":"Manu"}' localhost:6000 Greeter/SayHello
 
