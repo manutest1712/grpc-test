@@ -1,0 +1,38 @@
+name: Build gRPC Server Docker
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Set up .NET SDK (if building before dockerizing)
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'   # change if using .NET 7 or 6
+
+      # 3. Build the project (optional — only if you want to validate build)
+      - name: Build .NET gRPC Server
+        working-directory: ./GrpcExample
+        run: dotnet build GrpcExample.sln --configuration Release
+
+      # 4. Build Docker image
+      - name: Build Docker image
+        run: |
+          docker build \
+            -t grpcserver-image:latest \
+            ./GrpcExample/GrpcServer
+
+      # 5. List created Docker images
+      - name: Show Docker images
+        run: docker images
