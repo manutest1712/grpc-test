@@ -49,7 +49,7 @@ jobs:
 
           # Verify generated files (optional)
           echo "Generated files:"
-          ls -F
+          ls -F ../python-tests
 
       # 2. Set up .NET SDK (if building before dockerizing)
       - name: Setup .NET
