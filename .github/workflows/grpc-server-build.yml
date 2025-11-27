@@ -33,6 +33,22 @@ jobs:
           python -m pip install --upgrade pip
           pip install grpcio-tools grpcio
 
+            # -------------------------
+      # 8. Generate Python gRPC stubs from protos
+      # -------------------------
+      - name: Generate Python gRPC client stubs
+        working-directory: ./GrpcExample/GrpcContracts
+        run: |
+          python -m grpc_tools.protoc \
+            -I=Protos \
+            --python_out=../python-tests \
+            --grpc_python_out=../python-tests \
+            Protos/*.prot
+
+          # Verify generated files (optional)
+          echo "Generated files:"
+          ls -F
+
       # 2. Set up .NET SDK (if building before dockerizing)
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
