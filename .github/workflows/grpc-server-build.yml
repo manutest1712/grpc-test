@@ -101,7 +101,16 @@ jobs:
           # Example: call a specific method
           grpcurl -plaintext -d '{"name":"Manu"}' localhost:6000 greet.Greeter/SayHello
 
-      # 9. Stop and remove container
+            # -------------------------
+      # 9. Run Python tests using pytest
+      # -------------------------
+      - name: Run Python gRPC tests
+        working-directory: ./GrpcExample/python-tests
+        env:
+          GRPC_SERVER_URL: "localhost:6000"
+        run: |
+          pytest -v
+      # 10. Stop and remove container
       - name: Clean up Docker container
         run: |
           docker stop grpc-test
