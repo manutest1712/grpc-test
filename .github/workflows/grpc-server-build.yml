@@ -51,6 +51,12 @@ jobs:
           echo "Generated files:"
           ls -F ../python-tests
 
+      - name: Upload Python gRPC stubs as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: python-grpc-stubs
+          path: GrpcExample/python-tests/*.py
+          
       # 5. Install Python test dependencies
       # You need to ensure the 'python-tests' directory exists and contains a requirements.txt
       - name: Install Python test dependencies
