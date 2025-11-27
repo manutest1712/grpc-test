@@ -40,7 +40,7 @@ jobs:
         working-directory: ./GrpcExample/GrpcContracts
         
         run: |
-          PROTO_DIR=./GrpcExample/GrpcContracts/Protos
+          PROTO_DIR=./Protos
           python -m grpc_tools.protoc \
             -I$PROTO_DIR \
             --python_out=../python-tests \
