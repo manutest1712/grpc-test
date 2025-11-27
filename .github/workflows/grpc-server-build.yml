@@ -52,7 +52,7 @@ jobs:
           ls -F ../python-tests
 
       - name: Upload Python gRPC stubs as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: python-grpc-stubs
           path: GrpcExample/python-tests/*.py
