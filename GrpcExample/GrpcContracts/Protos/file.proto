@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option csharp_namespace = "TestGrpc.FileService";
+
+package FileService;
+
+service FileStreamer {
+  // Client requests a file by name, server streams chunks
+  rpc DownloadFile(FileRequest) returns (stream FileChunk);
+}
+
+message FileRequest {
+  string file_name = 1;  // File to download
+}
+
+message FileChunk {
+  string file_name = 1;  // Optional: include again for context
+  int64 total_size = 2;  // Only sent once or repeated
+  bytes data = 3;        // Chunk bytes
+  int32 chunk_number = 4;
+  bool is_last = 5;
+}
