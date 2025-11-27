@@ -38,9 +38,11 @@ jobs:
       # -------------------------
       - name: Generate Python gRPC client stubs
         working-directory: ./GrpcExample/GrpcContracts
+        
         run: |
+          PROTO_DIR=./GrpcExample/GrpcContracts/Protos
           python -m grpc_tools.protoc \
-            -I=Protos \
+            -I$PROTO_DIR \
             --python_out=../python-tests \
             --grpc_python_out=../python-tests \
             Protos/*.prot
