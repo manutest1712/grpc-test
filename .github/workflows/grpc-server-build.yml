@@ -45,7 +45,7 @@ jobs:
             -I$PROTO_DIR \
             --python_out=../python-tests \
             --grpc_python_out=../python-tests \
-            Protos/*.prot
+            $PROTO_DIR/*.proto
 
           # Verify generated files (optional)
           echo "Generated files:"
